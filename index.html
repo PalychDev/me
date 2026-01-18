@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PalychDev | Premium Python Solutions</title>
+    
+    <meta name="description" content="Разработка надежных Telegram ботов, парсеров и backend-систем на Python. Чистый код, масштабируемая архитектура и соблюдение дедлайнов.">
+    <meta name="keywords" content="Python разработчик, Telegram боты, Backend, Парсинг, Разработка на заказ, PalychDev">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://palychdev.ru">
+    <meta name="theme-color" content="#050505">
+    
+    <link rel="icon" type="image/png" href="https://i.ibb.co/N60JV3gY/logo.png">
+    <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/N60JV3gY/logo.png">
+    
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://palychdev.ru">
+    <meta property="og:title" content="PalychDev | Premium Python Solutions">
+    <meta property="og:description" content="Python разработчик специализирующийся на Telegram ботах и backend решениях.">
+    <meta property="og:image" content="https://palychdev.ru/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="PalychDev">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://palychdev.ru">
+    <meta name="twitter:title" content="PalychDev | Premium Python Solutions">
+    <meta name="twitter:description" content="Разработка надежных Telegram ботов и backend-систем.">
+    <meta name="twitter:image" content="https://palychdev.ru/og-image.jpg">
+
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- DNS Prefetch & Preconnect for faster resource loading -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "PalychDev",
+      "url": "https://palychdev.ru",
+      "image": "https://palychdev.ru/avatar.jpg",
+      "jobTitle": "Python Developer",
+      "description": "Разработка надежных Telegram ботов, парсеров и backend-систем на Python.",
+      "knowsAbout": ["Python", "Telegram API", "Backend Development", "Parsing", "PostgreSQL", "Docker"],
+      "sameAs": [
+        "https://t.me/qpobo",
+        "https://github.com/PalychDev"
+      ]
+    }
+    </script>
+    
+    <!-- Critical CSS inlined for faster FCP -->
+    <style>
+        /* Critical above-the-fold styles */
+        * { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; box-sizing: border-box; }
+        html { scroll-padding-top: 100px; }
+        .font-mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #fff;
+            color: #000;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .bg-gradient-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.03), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.02), transparent 25%);
+            filter: blur(40px);
+            will-change: transform;
+            transform: translateZ(0);
+            contain: strict;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+            contain: strict;
+        }
+
+        .glass {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform, border-color, background;
+        }
+
+        .glass:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(30, 30, 30, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #terminalCode > div {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .terminal-dots span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .bg-dot-1 { background-color: #3f3f3f; }
+        .bg-dot-2 { background-color: #5f5f5f; }
+        .bg-dot-3 { background-color: #7f7f7f; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+        .nav-link {
+            position: relative;
+            color: #888;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link:focus-visible { color: #fff; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link:focus-visible::after { width: 100%; }
+        
+        header {
+            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        header.header-hidden {
+            transform: translateY(-150%);
+        }
+
+        header .glass-nav {
+            transition: background 0.6s ease, border-color 0.6s ease;
+        }
+        
+        header.scrolled .glass-nav {
+            background: rgba(10, 10, 10, 0.95);
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        .grayscale-100 {
+            filter: grayscale(100%);
+        }
+        
+        section {
+            text-align: left;
+        }
+
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        @media (min-width: 1024px) {
+            html {
+                font-size: 14.4px;
+            }
+            
+            .max-w-6xl {
+                max-width: 1152px !important;
+            }
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+    
+    <!-- Lenis for smooth scroll - must load synchronously -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="selection:bg-white selection:text-black">
+
+<a href="#main" class="skip-link">Перейти к основному контенту</a>
+
+<div class="bg-gradient-mesh" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<header class="fixed top-0 left-0 right-0 z-50 py-6 px-6 flex justify-center w-full" role="banner">
+    <div class="glass-nav glass rounded-full px-8 py-4 flex items-center justify-between w-full max-w-6xl">
+        <a href="#" class="text-lg font-bold tracking-wide uppercase hover:text-gray-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20" aria-label="PalychDev - На главную">
+            PalychDev
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium" role="navigation" aria-label="Основная навигация">
+            <a href="#about" class="nav-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Обо мне</a>
+            <a href="#projects" class="nav-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Проекты</a>
+            <a href="#stack" class="nav-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Стек</a>
+        </nav>
+
+        <a href="#contact" class="hidden md:block text-sm font-semibold bg-white text-black px-6 py-2.5 rounded-full hover:bg-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20">
+            Связаться
+        </a>
+        
+        <button id="mobileMenuBtn" class="md:hidden text-white/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+</header>
+
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-3/4 max-w-xs z-40 glass p-8 flex flex-col gap-8" role="dialog" aria-modal="true" aria-label="Мобильное меню" aria-hidden="true">
+    <button id="closeMobileMenu" class="self-end text-white/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20" aria-label="Закрыть меню">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <nav class="flex flex-col gap-6 text-lg font-medium" role="navigation" aria-label="Мобильная навигация">
+        <a href="#about" class="nav-link">Обо мне</a>
+        <a href="#projects" class="nav-link">Проекты</a>
+        <a href="#stack" class="nav-link">Стек</a>
+        <a href="#contact" class="mt-4 text-sm font-semibold bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200 transition-colors text-center">
+            Связаться
+        </a>
+    </nav>
+</div>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/50 z-30 hidden" aria-hidden="true"></div>
+
+<main id="main">
+<section class="relative min-h-screen flex items-center px-6 pt-32 pb-20 z-10" aria-labelledby="hero-title">
+    <div class="max-w-6xl w-full mx-auto grid lg:grid-cols-2 gap-12 items-start">
+        
+        <div class="text-left flex flex-col items-start">
+            <div class="fade-in-up mb-8">
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+                    <span class="relative flex h-2 w-2" aria-hidden="true">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    </span>
+                    <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">Available for work</span>
+                </div>
+            </div>
+
+            <h1 id="hero-title" class="fade-in-up delay-100 text-5xl md:text-7xl font-bold leading-none tracking-tight mb-8 text-left">
+                PalychDev<br>
+                <span class="text-gray-500">Python</span> Solutions
+            </h1>
+
+            <p class="fade-in-up delay-200 text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed mb-10 text-left">
+                Разработка надежных Telegram ботов, парсеров и backend-систем. Чистый код, масштабируемая архитектура и соблюдение дедлайнов.
+            </p>
+
+            <div class="fade-in-up delay-300 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="https://t.me/qpobo" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all duration-300 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20">
+                    <svg class="w-5 h-5 grayscale-100" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </a>
+                <a href="#projects" class="px-8 py-4 glass text-white font-medium rounded-xl hover:bg-white/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 text-center">
+                    Портфолио
+                </a>
+            </div>
+
+            <div class="fade-in-up delay-500 mt-12 grid grid-cols-3 gap-8 border-t border-white/10 pt-8 w-full">
+                <div>
+                    <div class="text-2xl font-bold text-white mb-1">2+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Года опыта</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-white mb-1">10+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Проектов</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-white mb-1">100%</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Результат</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fade-in-up delay-200 relative hidden lg:block mt-16" aria-hidden="true">
+            <div class="glass rounded-xl border border-white/10 p-1 bg-black/40 overflow-hidden shadow-2xl">
+                <div class="bg-[#0c0c0c] rounded-lg p-6 font-mono text-xs leading-6">
+                    <div class="terminal-dots flex mb-6 opacity-50">
+                        <span class="bg-dot-1"></span>
+                        <span class="bg-dot-2"></span>
+                        <span class="bg-dot-3"></span>
+                    </div>
+                    <div class="space-y-1 text-gray-500 font-mono text-xs" id="terminalCode">
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">01</span><span class="text-gray-600"># Обработка нового заказа</span></div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">02</span><span class="text-gray-300">@router.message</span>(<span class="text-white">F.text</span> <span class="text-white">==</span> <span class="text-gray-400">"Купить"</span>)</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">03</span><span class="text-white">async def</span> <span class="text-gray-300">create_order</span>(msg: <span class="text-gray-300">Message</span>):</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">04</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-600"># 1. Создаем счет в базе</span></div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">05</span>&nbsp;&nbsp;&nbsp;&nbsp;order = <span class="text-white">await</span> <span class="text-gray-300">db.create_order</span>(</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">06</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id=msg.from_user.id,</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">07</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount=<span class="text-gray-400">5000</span>,</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currency=<span class="text-gray-400">"RUB"</span></div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">09</span>&nbsp;&nbsp;&nbsp;&nbsp;)</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">10</span>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">11</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-600"># 2. Отправляем пользователю</span></div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white">await</span> <span class="text-gray-300">msg.answer</span>(</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">13</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-400">f"Заказ #{order.id} создан!"</span>,</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">14</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reply_markup=kb.pay_button</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">15</span>&nbsp;&nbsp;&nbsp;&nbsp;)</div>
+                        <div class="flex"><span class="text-white animate-pulse">_</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute -inset-4 bg-white/5 blur-3xl -z-10 rounded-full opacity-20"></div>
+        </div>
+
+    </div>
+</section>
+
+<section id="about" class="py-24 px-6 relative z-10 reveal-on-scroll" aria-labelledby="about-title">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+            <div>
+                <span class="text-xs font-mono uppercase tracking-widest text-gray-500 mb-4 block text-left">Обо мне</span>
+                <h2 id="about-title" class="text-3xl md:text-4xl font-bold mb-8 text-left">
+                    Программирование — это искусство<br>создания работающих систем.
+                </h2>
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed text-left">
+                    <p>
+                        Я специализируюсь на Python разработке с фокусом на Telegram API. Моя цель — не просто написать код, а создать инструмент, который решает конкретные бизнес-задачи.
+                    </p>
+                    <p>
+                        В работе использую современные асинхронные фреймворки, базы данных и контейнеризацию. Это гарантирует, что ваш проект будет работать быстро, стабильно и выдержит высокие нагрузки.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid gap-4 mt-8">
+                <div class="glass p-6 rounded-xl text-left">
+                    <h3 class="text-white font-bold mb-2">Архитектура</h3>
+                    <p class="text-sm text-gray-500">Проектирую масштабируемые системы, которые легко поддерживать и развивать в будущем.</p>
+                </div>
+                <div class="glass p-6 rounded-xl text-left">
+                    <h3 class="text-white font-bold mb-2">Безопасность</h3>
+                    <p class="text-sm text-gray-500">Уделяю особое внимание защите данных и стабильности работы сервисов.</p>
+                </div>
+                <div class="glass p-6 rounded-xl text-left">
+                    <h3 class="text-white font-bold mb-2">Поддержка</h3>
+                    <p class="text-sm text-gray-500">Не бросаю проекты после сдачи. Обеспечиваю техническое сопровождение и доработки.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="py-24 px-6 relative z-10" aria-labelledby="projects-title">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+            <div class="text-left w-full">
+                <span class="text-xs font-mono uppercase tracking-widest text-gray-500 mb-2 block">Портфолио</span>
+                <h2 id="projects-title" class="text-3xl md:text-4xl font-bold">Избранные кейсы</h2>
+            </div>
+            <div class="whitespace-nowrap">
+                 <a href="https://t.me/qpobo" target="_blank" rel="noopener noreferrer" class="text-sm border-b border-gray-500 text-gray-400 hover:text-white hover:border-white transition-all pb-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Все проекты в Telegram &rarr;</a>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <article class="group cursor-pointer text-left project-card reveal-on-scroll">
+                <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                         <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">💰</span>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white">Expense Visualizer</h3>
+                <p class="text-gray-500 text-sm mb-4 max-w-md">Telegram-бот для учета расходов с визуализацией статистики. Категории трат, графики и отчеты за период.</p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">SQLite3</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Matplotlib</span>
+                </div>
+            </article>
+
+            <article class="group cursor-pointer text-left project-card reveal-on-scroll">
+                <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">🤖</span>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white">AI Business Assistant</h3>
+                <p class="text-gray-500 text-sm mb-4 max-w-md">Умный бот техподдержки на базе OpenAI. Обучается на базе знаний компании, отвечает на вопросы 24/7.</p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">OpenAI API</span>
+                </div>
+            </article>
+            
+            <article class="group cursor-pointer text-left project-card reveal-on-scroll">
+                <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">🎭</span>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white">Anonymous Chat</h3>
+                <p class="text-gray-500 text-sm mb-4 max-w-md">Бот для анонимного общения. Случайный подбор собеседников, фильтры и модерация контента.</p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">SQLite3</span>
+                </div>
+            </article>
+
+            <article class="group cursor-pointer text-left project-card reveal-on-scroll">
+                <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">📥</span>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white">Video Download Bot</h3>
+                <p class="text-gray-500 text-sm mb-4 max-w-md">Бот для скачивания видео с YouTube и других платформ. Выбор качества, конвертация в аудио.</p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">yt-dlp</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="stack" class="py-24 px-6 relative z-10 reveal-on-scroll" aria-labelledby="stack-title">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-left mb-12">
+            <h2 id="stack-title" class="text-3xl font-bold mb-4">Технологический стек</h2>
+            <p class="text-gray-400 max-w-lg">Инструменты, которые позволяют создавать быстрые и безопасные решения.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">Python</div>
+                <div class="text-xs text-gray-500">Основной разработки</div>
+            </div>
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">Telegram API</div>
+                <div class="text-xs text-gray-500">aiogram, pyTelegramBotAPI</div>
+            </div>
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">Базы данных</div>
+                <div class="text-xs text-gray-500">SQLite, PostgreSQL</div>
+            </div>
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">HTML/CSS</div>
+                <div class="text-xs text-gray-500">Верстка интерфейсов</div>
+            </div>
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">JavaScript</div>
+                <div class="text-xs text-gray-500">Клиентская логика</div>
+            </div>
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">Figma</div>
+                <div class="text-xs text-gray-500">Дизайн прототипов</div>
+            </div>
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">Git</div>
+                <div class="text-xs text-gray-500">Контроль версий</div>
+            </div>
+            <div class="glass p-6 rounded-xl flex flex-col items-start justify-center hover:bg-white/5 transition-colors">
+                <div class="text-xl font-bold mb-1 text-white">API интеграции</div>
+                <div class="text-xs text-gray-500">REST API, WebHooks</div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<footer id="contact" class="py-24 px-6 relative z-10 border-t border-white/5 reveal-on-scroll" role="contentinfo">
+    <div class="max-w-6xl mx-auto text-left">
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">Есть идея для бота?</h2>
+                <p class="text-gray-400 mb-12 max-w-lg">
+                    Давайте обсудим вашу задачу. Я проанализирую требования и предложу оптимальное техническое решение.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 mb-16">
+                    <a href="https://t.me/qpobo" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20">
+                        Написать в Telegram
+                    </a>
+                    <a href="mailto:palychbn@gmail.com" class="w-full sm:w-auto text-center px-8 py-4 glass text-white font-medium rounded-full hover:bg-white/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">
+                        palychbn@gmail.com
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col justify-end items-start md:items-end">
+                <div class="text-right">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/5 pt-8">
+            <p class="mb-4 md:mb-0">&copy; <span id="year"></span> PalychDev. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="https://github.com/PalychDev" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">GitHub</a>
+                <a href="https://t.me/qpobo" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Telegram Channel</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // IntersectionObserver for reveal animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (!header) return;
+
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+        if (mobileMenuBtn && closeMobileMenu && mobileMenu && mobileMenuOverlay) {
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                mobileMenuOverlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    const firstLink = mobileMenu.querySelector('a');
+                    if(firstLink) firstLink.focus();
+                }, 100);
+            }
+
+            function closeMobileMenuHandler() {
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+                mobileMenuBtn.focus();
+            }
+
+            mobileMenuBtn.addEventListener('click', openMobileMenu);
+            closeMobileMenu.addEventListener('click', closeMobileMenuHandler);
+            mobileMenuOverlay.addEventListener('click', closeMobileMenuHandler);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMobileMenuHandler();
+                }
+            });
+            
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenuHandler);
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
+                if (!targetId) return;
+
+                const targetElement = document.querySelector(targetId);
+                
+                if (!targetElement) return;
+                
+                e.preventDefault();
+                
+                lenis.scrollTo(targetId, {
+                    offset: -100,
+                    duration: 1.5,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            });
+        });
+
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+        // Создаем закругленный favicon
+        const faviconUrl = 'https://i.ibb.co/qFy0cXTJ/logo.png';
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const size = 64;
+            const radius = 16; // Закругление чуть больше
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Рисуем закругленный квадрат для обрезки
+            ctx.beginPath();
+            ctx.moveTo(radius, 0);
+            ctx.lineTo(size - radius, 0);
+            ctx.quadraticCurveTo(size, 0, size, radius);
+            ctx.lineTo(size, size - radius);
+            ctx.quadraticCurveTo(size, size, size - radius, size);
+            ctx.lineTo(radius, size);
+            ctx.quadraticCurveTo(0, size, 0, size - radius);
+            ctx.lineTo(0, radius);
+            ctx.quadraticCurveTo(0, 0, radius, 0);
+            ctx.closePath();
+            ctx.clip();
+            
+            // Рисуем изображение
+            ctx.drawImage(img, 0, 0, size, size);
+            
+            // Устанавливаем как favicon
+            const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+            link.type = 'image/png';
+            link.rel = 'icon';
+            link.href = canvas.toDataURL('image/png');
+            document.head.appendChild(link);
+        };
+        img.src = faviconUrl;
+
+        setTimeout(() => {
+            const codeLines = document.querySelectorAll('#terminalCode > div');
+            if (codeLines.length > 0) {
+                codeLines.forEach((line, index) => {
+                    line.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    
+                    setTimeout(() => {
+                        line.style.opacity = '1';
+                        line.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+        }, 100);
+    });
+</script>
+</body>
+</html>
