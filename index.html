@@ -380,16 +380,16 @@
                     <div class="space-y-1 text-gray-500 font-mono text-xs" id="terminalCode">
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">01</span><span class="text-gray-600"># Обработка нового заказа</span></div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">02</span><span class="text-gray-300">@router.message</span>(<span class="text-white">F.text</span> <span class="text-white">==</span> <span class="text-gray-400">"Купить"</span>)</div>
-                        <div class="flex"><span class="text-gray-700 mr-3 select-none">03</span><span class="text-white">async def</span> <span class="text-gray-300">create_order</span>(msg: <span class="text-gray-300">Message</span>):</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">03</span><span class="text-white">async def</span>&nbsp;<span class="text-gray-300">create_order</span>(msg: <span class="text-gray-300">Message</span>):</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">04</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-600"># 1. Создаем счет в базе</span></div>
-                        <div class="flex"><span class="text-gray-700 mr-3 select-none">05</span>&nbsp;&nbsp;&nbsp;&nbsp;order = <span class="text-white">await</span> <span class="text-gray-300">db.create_order</span>(</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">05</span>&nbsp;&nbsp;&nbsp;&nbsp;order = <span class="text-white">await</span>&nbsp;<span class="text-gray-300">db.create_order</span>(</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">06</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id=msg.from_user.id,</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">07</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount=<span class="text-gray-400">5000</span>,</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currency=<span class="text-gray-400">"RUB"</span></div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">09</span>&nbsp;&nbsp;&nbsp;&nbsp;)</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">10</span>&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">11</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-600"># 2. Отправляем пользователю</span></div>
-                        <div class="flex"><span class="text-gray-700 mr-3 select-none">12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white">await</span> <span class="text-gray-300">msg.answer</span>(</div>
+                        <div class="flex"><span class="text-gray-700 mr-3 select-none">12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white">await</span>&nbsp;<span class="text-gray-300">msg.answer</span>(</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">13</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-400">f"Заказ #{order.id} создан!"</span>,</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">14</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reply_markup=kb.pay_button</div>
                         <div class="flex"><span class="text-gray-700 mr-3 select-none">15</span>&nbsp;&nbsp;&nbsp;&nbsp;)</div>
