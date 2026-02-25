@@ -36,12 +36,25 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+    <!--
+        FIX 1: @tailwindcss/browser@4 — это dev-only инструмент (~500KB+ JS-компилятор).
+        Заменён на официальный Tailwind CDN (v3 JIT Play CDN, ~98KB gzip).
+        Остаётся в <head> чтобы избежать FOUC (мигания нестилизованного контента).
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--
+        FIX 2: Lenis больше не блокирует рендер в <head>.
+        Добавлен preload — браузер начнёт скачивать файл заранее,
+        но не будет блокировать парсинг HTML. Тег <script> перенесён в конец <body>.
+    -->
+    <link rel="preload" href="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" as="script">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -269,10 +282,6 @@
             transform: translateX(0);
         }
     </style>
-    
-    <!-- Lenis for smooth scroll - must load synchronously -->
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="selection:bg-white selection:text-black">
 
@@ -598,6 +607,12 @@
     </div>
 </footer>
 
+<!--
+    FIX 2 (продолжение): Lenis перенесён сюда — не блокирует парсинг HTML и рендер.
+    Браузер уже начал его скачивать благодаря <link rel="preload"> в <head>.
+-->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
 <script>
     // IntersectionObserver for reveal animations
     const observerOptions = {
@@ -732,12 +747,11 @@
         img.onload = function() {
             const canvas = document.createElement('canvas');
             const size = 64;
-            const radius = 16; // Закругление чуть больше
+            const radius = 16;
             canvas.width = size;
             canvas.height = size;
             const ctx = canvas.getContext('2d');
             
-            // Рисуем закругленный квадрат для обрезки
             ctx.beginPath();
             ctx.moveTo(radius, 0);
             ctx.lineTo(size - radius, 0);
@@ -751,10 +765,8 @@
             ctx.closePath();
             ctx.clip();
             
-            // Рисуем изображение
             ctx.drawImage(img, 0, 0, size, size);
             
-            // Устанавливаем как favicon
             const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
             link.type = 'image/png';
             link.rel = 'icon';
