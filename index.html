@@ -32,7 +32,6 @@
 
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
-    <!-- DNS Prefetch & Preconnect for faster resource loading -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://unpkg.com">
@@ -42,21 +41,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
 
-    <!--
-        FIX 1: @tailwindcss/browser@4 — это dev-only инструмент (~500KB+ JS-компилятор).
-        Заменён на официальный Tailwind CDN (v3 JIT Play CDN, ~98KB gzip).
-        Остаётся в <head> чтобы избежать FOUC (мигания нестилизованного контента).
-    -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!--
-        FIX 2: Lenis больше не блокирует рендер в <head>.
-        Добавлен preload — браузер начнёт скачивать файл заранее,
-        но не будет блокировать парсинг HTML. Тег <script> перенесён в конец <body>.
-    -->
     <link rel="preload" href="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" as="script">
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <script type="application/ld+json">
@@ -76,9 +62,7 @@
     }
     </script>
     
-    <!-- Critical CSS inlined for faster FCP -->
     <style>
-        /* Critical above-the-fold styles */
         * { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; box-sizing: border-box; }
         html { scroll-padding-top: 100px; }
         .font-mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
@@ -108,9 +92,7 @@
             z-index: 100;
             transition: top 0.3s;
         }
-        .skip-link:focus {
-            top: 0;
-        }
+        .skip-link:focus { top: 0; }
 
         .sr-only {
             position: absolute;
@@ -126,10 +108,8 @@
 
         .bg-gradient-mesh {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             z-index: -1;
             background: 
                 radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.03), transparent 25%),
@@ -142,10 +122,8 @@
 
         .noise-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0;
             opacity: 0.04;
@@ -203,8 +181,7 @@
         
         .terminal-dots span {
             display: inline-block;
-            width: 10px;
-            height: 10px;
+            width: 10px; height: 10px;
             border-radius: 50%;
             margin-right: 6px;
         }
@@ -226,62 +203,37 @@
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
             background: #fff;
             transition: width 0.3s ease;
         }
         .nav-link:hover::after, .nav-link:focus-visible::after { width: 100%; }
         
-        header {
-            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        
-        header.header-hidden {
-            transform: translateY(-150%);
-        }
-
-        header .glass-nav {
-            transition: background 0.6s ease, border-color 0.6s ease;
-        }
-        
+        header { transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        header.header-hidden { transform: translateY(-150%); }
+        header .glass-nav { transition: background 0.6s ease, border-color 0.6s ease; }
         header.scrolled .glass-nav {
             background: rgba(10, 10, 10, 0.95);
             border-color: rgba(255,255,255,0.08);
         }
 
-        .grayscale-100 {
-            filter: grayscale(100%);
-        }
-        
-        section {
-            text-align: left;
-        }
-
-        .perspective-1000 {
-            perspective: 1000px;
-        }
+        .grayscale-100 { filter: grayscale(100%); }
+        section { text-align: left; }
+        .perspective-1000 { perspective: 1000px; }
 
         @media (min-width: 1024px) {
-            html {
-                font-size: 14.4px;
-            }
-            
-            .max-w-6xl {
-                max-width: 1152px !important;
-            }
+            html { font-size: 14.4px; }
+            .max-w-6xl { max-width: 1152px !important; }
         }
 
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
+        .mobile-menu.active { transform: translateX(0); }
     </style>
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body class="selection:bg-white selection:text-black">
 
@@ -295,24 +247,21 @@
         <a href="#" class="text-lg font-bold tracking-wide uppercase hover:text-gray-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20" aria-label="PalychDev - На главную">
             PalychDev
         </a>
-
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium" role="navigation" aria-label="Основная навигация">
             <a href="#about" class="nav-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Обо мне</a>
             <a href="#projects" class="nav-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Проекты</a>
             <a href="#stack" class="nav-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Стек</a>
         </nav>
-
         <a href="#contact" class="hidden md:block text-sm font-semibold bg-white text-black px-6 py-2.5 rounded-full hover:bg-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20">
             Связаться
         </a>
-        
         <button id="mobileMenuBtn" class="md:hidden text-white/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
     </div>
 </header>
 
-<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-3/4 max-w-xs z-40 glass p-8 flex flex-col gap-8" role="dialog" aria-modal="true" aria-label="Мобильное меню" aria-hidden="true">
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-3/4 max-w-xs z-[60] glass p-8 flex flex-col gap-8" role="dialog" aria-modal="true" aria-label="Мобильное меню" aria-hidden="true">
     <button id="closeMobileMenu" class="self-end text-white/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20" aria-label="Закрыть меню">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
@@ -326,7 +275,7 @@
     </nav>
 </div>
 
-<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/50 z-30 hidden" aria-hidden="true"></div>
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/50 z-[55] hidden" aria-hidden="true"></div>
 
 <main id="main">
 <section class="relative min-h-screen flex items-center px-6 pt-32 pb-20 z-10" aria-labelledby="hero-title">
@@ -368,7 +317,7 @@
                     <div class="text-xs text-gray-500 uppercase tracking-wider">Года опыта</div>
                 </div>
                 <div>
-                    <div class="text-2xl font-bold text-white mb-1">10+</div>
+                    <div class="text-2xl font-bold text-white mb-1">20+</div>
                     <div class="text-xs text-gray-500 uppercase tracking-wider">Проектов</div>
                 </div>
                 <div>
@@ -456,75 +405,81 @@
                 <h2 id="projects-title" class="text-3xl md:text-4xl font-bold">Избранные кейсы</h2>
             </div>
             <div class="whitespace-nowrap">
-                 <a href="https://t.me/qpobo" target="_blank" rel="noopener noreferrer" class="text-sm border-b border-gray-500 text-gray-400 hover:text-white hover:border-white transition-all pb-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Все проекты в Telegram &rarr;</a>
+                <a href="https://t.me/qpobo" target="_blank" rel="noopener noreferrer" class="text-sm border-b border-gray-500 text-gray-400 hover:text-white hover:border-white transition-all pb-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20">Все проекты в Telegram &rarr;</a>
             </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
+
+            <!-- ASL Tournament -->
             <article class="group cursor-pointer text-left project-card reveal-on-scroll">
                 <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
                     <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                         <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">💰</span>
+                        <i class="ph-fill ph-game-controller text-white opacity-25 group-hover:opacity-55 group-hover:scale-110 transition-all duration-500" style="font-size: 56px;"></i>
                     </div>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">Expense Visualizer</h3>
-                <p class="text-gray-500 text-sm mb-4 max-w-md">Telegram-бот для учета расходов с визуализацией статистики. Категории трат, графики и отчеты за период.</p>
+                <h3 class="text-xl font-bold mb-2 text-white">ASL — CS2 Tournament Platform</h3>
+                <p class="text-gray-500 text-sm mb-4 max-w-md" style="min-height: 60px;">Собственная платформа для проведения турниров по CS2. Регистрация команд, сетка плей-офф, статистика матчей и автоматизация результатов.</p>
                 <div class="flex gap-2 flex-wrap">
-                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
-                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
-                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">SQLite3</span>
-                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Matplotlib</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Next.js</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Firebase</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">TypeScript</span>
                 </div>
             </article>
 
+            <!-- AI Business Assistant -->
             <article class="group cursor-pointer text-left project-card reveal-on-scroll">
                 <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
                     <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">🤖</span>
+                        <i class="ph-fill ph-lightning text-white opacity-25 group-hover:opacity-55 group-hover:scale-110 transition-all duration-500" style="font-size: 56px;"></i>
                     </div>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-white">AI Business Assistant</h3>
-                <p class="text-gray-500 text-sm mb-4 max-w-md">Умный бот техподдержки на базе OpenAI. Обучается на базе знаний компании, отвечает на вопросы 24/7.</p>
+                <p class="text-gray-500 text-sm mb-4 max-w-md" style="min-height: 60px;">Умный бот техподдержки на базе OpenAI. Обучается на базе знаний компании, отвечает на вопросы 24/7.</p>
                 <div class="flex gap-2 flex-wrap">
                     <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
                     <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
                     <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">OpenAI API</span>
                 </div>
             </article>
-            
+
+            <!-- OTC Bot -->
             <article class="group cursor-pointer text-left project-card reveal-on-scroll">
                 <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
                     <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">🎭</span>
+                        <i class="ph-fill ph-gift text-white opacity-25 group-hover:opacity-55 group-hover:scale-110 transition-all duration-500" style="font-size: 56px;"></i>
                     </div>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">Anonymous Chat</h3>
-                <p class="text-gray-500 text-sm mb-4 max-w-md">Бот для анонимного общения. Случайный подбор собеседников, фильтры и модерация контента.</p>
+                <h3 class="text-xl font-bold mb-2 text-white">OTC Bot — P2P NFT Gifts</h3>
+                <p class="text-gray-500 text-sm mb-4 max-w-md" style="min-height: 60px;">Telegram-бот для P2P обмена NFT-подарков в Telegram. Безопасные сделки купли-продажи между пользователями без посредников.</p>
                 <div class="flex gap-2 flex-wrap">
                     <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
                     <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
-                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">SQLite3</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">TON API</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">PostgreSQL</span>
                 </div>
             </article>
 
+            <!-- AI Agents Hub -->
             <article class="group cursor-pointer text-left project-card reveal-on-scroll">
                 <div class="glass rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative">
                     <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="text-5xl grayscale-100 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" aria-hidden="true">📥</span>
+                        <i class="ph-fill ph-brain text-white opacity-25 group-hover:opacity-55 group-hover:scale-110 transition-all duration-500" style="font-size: 56px;"></i>
                     </div>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">Video Download Bot</h3>
-                <p class="text-gray-500 text-sm mb-4 max-w-md">Бот для скачивания видео с YouTube и других платформ. Выбор качества, конвертация в аудио.</p>
+                <h3 class="text-xl font-bold mb-2 text-white">AI Agents Hub</h3>
+                <p class="text-gray-500 text-sm mb-4 max-w-md" style="min-height: 60px;">Платформа с коллекцией лучших ИИ-агентов. Каждый агент специализируется на конкретных задачах — от кода до аналитики и креатива.</p>
                 <div class="flex gap-2 flex-wrap">
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">HTML/CSS/JS</span>
                     <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Python</span>
-                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">Aiogram</span>
-                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">yt-dlp</span>
+                    <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">AI APIs</span>
                 </div>
             </article>
+
         </div>
     </div>
 </section>
@@ -607,14 +562,9 @@
     </div>
 </footer>
 
-<!--
-    FIX 2 (продолжение): Lenis перенесён сюда — не блокирует парсинг HTML и рендер.
-    Браузер уже начал его скачивать благодаря <link rel="preload"> в <head>.
--->
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
 <script>
-    // IntersectionObserver for reveal animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -658,21 +608,17 @@
 
         window.addEventListener('scroll', () => {
             if (!header) return;
-
             const currentScrollY = window.scrollY;
-            
             if (currentScrollY > 20) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-
             if (currentScrollY > lastScrollY && currentScrollY > 100) {
                 header.classList.add('header-hidden');
             } else {
                 header.classList.remove('header-hidden');
             }
-
             lastScrollY = currentScrollY;
         }, { passive: true });
 
@@ -722,13 +668,9 @@
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
                 if (!targetId) return;
-
                 const targetElement = document.querySelector(targetId);
-                
                 if (!targetElement) return;
-                
                 e.preventDefault();
-                
                 lenis.scrollTo(targetId, {
                     offset: -100,
                     duration: 1.5,
@@ -740,7 +682,6 @@
         const yearSpan = document.getElementById('year');
         if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-        // Создаем закругленный favicon
         const faviconUrl = 'https://i.ibb.co/qFy0cXTJ/logo.png';
         const img = new Image();
         img.crossOrigin = 'Anonymous';
@@ -751,7 +692,6 @@
             canvas.width = size;
             canvas.height = size;
             const ctx = canvas.getContext('2d');
-            
             ctx.beginPath();
             ctx.moveTo(radius, 0);
             ctx.lineTo(size - radius, 0);
@@ -764,9 +704,7 @@
             ctx.quadraticCurveTo(0, 0, radius, 0);
             ctx.closePath();
             ctx.clip();
-            
             ctx.drawImage(img, 0, 0, size, size);
-            
             const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
             link.type = 'image/png';
             link.rel = 'icon';
@@ -780,7 +718,6 @@
             if (codeLines.length > 0) {
                 codeLines.forEach((line, index) => {
                     line.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    
                     setTimeout(() => {
                         line.style.opacity = '1';
                         line.style.transform = 'translateY(0)';
